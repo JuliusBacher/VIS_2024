@@ -7,8 +7,8 @@ import solver
 def run_simulation():
     # Parameters
     m = 1.0      # mass (kg)
-    k = 10.0     # stiffness (N/m)
-    d = 0.1      # damping coefficient
+    k = 100.0     # stiffness (N/m)
+    d = 0.01      # damping coefficient
 
     # initial conditions
     iniStates = np.array([0.0, 0.0])
