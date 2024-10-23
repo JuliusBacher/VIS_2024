@@ -18,6 +18,11 @@ class Model:
 class SingleMassOscillator(Model):
     def __init__(self, iniState, m, k, d):
         super().__init__(iniState)
+        self.__m__ = m
+        self.__k__ = k
+        self.__D__ = d # Umrechnen auf Lehrsches Dämpfungsmaß
+
+        
         #your implementation here
 
     def dydt(self, t):
