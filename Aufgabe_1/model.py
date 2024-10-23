@@ -20,7 +20,7 @@ class SingleMassOscillator(Model):
         super().__init__(iniState)
         self.__m__ = m
         self.__k__ = k
-        self.__D__ = d # Umrechnen auf Lehrsches Dämpfungsmaß
+        self.__d__ = d # Umrechnen auf Lehrsches Dämpfungsmaß machbar
 
         
         #your implementation here
