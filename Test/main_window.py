@@ -1,42 +1,30 @@
-
 from __future__ import annotations
 
-from PySide6.QtWidgets import (QHBoxLayout, QHeaderView, QSizePolicy,
-                               QTableView, QWidget)
+from PySide6.QtCore import Slot
+from PySide6.QtGui import QAction, QKeySequence
+from PySide6.QtWidgets import QMainWindow
 
-from table_model import CustomTableModel
 
+class MainWindow(QMainWindow):
+    def __init__(self, widget):
+        QMainWindow.__init__(self)
+        self.setWindowTitle("Eartquakes information")
+        self.setCentralWidget(widget)
+        # Menu
+        self.menu = self.menuBar()
+        self.file_menu = self.menu.addMenu("File")
 
-class Widget(QWidget):
-    def __init__(self, data):
-        QWidget.__init__(self)
+        ## Exit QAction
+        exit_action = QAction("Exit", self)
+        exit_action.setShortcut(QKeySequence.Quit)
+        exit_action.triggered.connect(self.close)
 
-        # Getting the Model
-        self.model = CustomTableModel(data)
+        self.file_menu.addAction(exit_action)
 
-        # Creating a QTableView
-        self.table_view = QTableView()
-        self.table_view.setModel(self.model)
+        # Status Bar
+        self.status = self.statusBar()
+        self.status.showMessage("Data loaded and plotted")
 
-        # QTableView Headers
-        self.horizontal_header = self.table_view.horizontalHeader()
-        self.vertical_header = self.table_view.verticalHeader()
-        self.horizontal_header.setSectionResizeMode(
-                               QHeaderView.ResizeToContents
-                               )
-        self.vertical_header.setSectionResizeMode(
-                             QHeaderView.ResizeToContents
-                             )
-        self.horizontal_header.setStretchLastSection(True)
-
-        # QWidget Layout
-        self.main_layout = QHBoxLayout()
-        size = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-
-        ## Left layout
-        size.setHorizontalStretch(1)
-        self.table_view.setSizePolicy(size)
-        self.main_layout.addWidget(self.table_view)
-
-        # Set the layout to the QWidget
-        self.setLayout(self.main_layout)
+        # Window dimensions
+        geometry = self.screen().availableGeometry()
+        self.setFixedSize(geometry.width() * 0.8, geometry.height() * 0.7)
