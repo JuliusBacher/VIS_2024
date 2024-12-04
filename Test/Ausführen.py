@@ -12,6 +12,9 @@ C:\Users\bache\AppData\Local\Programs\Python\Python312\python.exe Test\main2.py 
 #für main3
 C:\Users\bache\AppData\Local\Programs\Python\Python312\python.exe Test\main3.py -f Test\all_day.csv
 
+#für CustomTableModel
+C:\Users\bache\AppData\Local\Programs\Python\Python312\python.exe Test\CustomTableModel.py -f Test\all_day.csv
+
 
 ####################################################
 

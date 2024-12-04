@@ -19,3 +19,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     someone = Communicate()
     someone.speak.emit("Hello everybody!")
+
+
