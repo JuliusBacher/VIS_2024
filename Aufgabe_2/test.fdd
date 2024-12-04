@@ -1,6 +1,6 @@
 $RIGID_BODY:
 name: new_body_0
-geometry: C:\VIS_2024\inputfilereader\quader.obj
+geometry: C:\\VIS_2024\\Aufgabe_2\\quader.obj
 position: 0.000000, 0.000000, 0.000000
 x_axis: 1.00000000, 0.00000000, 0.00000000
 y_axis: 0.00000000, 1.00000000, 0.00000000
@@ -19,7 +19,7 @@ i3_axis: 0.00000000, 0.00000000, 1.00000000
 
 $RIGID_BODY:
 name: new_body_1
-geometry: C:\VIS_2024\inputfilereader\quader.obj
+geometry: C:\\VIS_2024\\inputfilereader\\quader.obj
 position: 25.000000, 0.000000, 10.000000
 x_axis: 1.00000000, 0.00000000, 0.00000000
 y_axis: 0.00000000, 1.00000000, 0.00000000
@@ -46,7 +46,7 @@ dz: 1
 ax: 1
 ay: 1
 az: 1
-position: 0.000000, 0.000000, 0.000000
+position: 0.000000, 5.000000, -20.000000
 x_axis: 1.00000000, 0.00000000, 0.00000000
 y_axis: 0.00000000, 1.00000000, 0.00000000
 z_axis: 0.00000000, 0.00000000, 1.00000000
@@ -70,8 +70,8 @@ $FORCE_GenericForce:
 name: new_force_0
 body1: new_body_0
 body2: new_body_1
-PointOfApplication_Body1: 10.000000, 20.000000, 30.000000
-PointOfApplication_Body2: 0.000000, 0.000000, 0.000000
+PointOfApplication_Body1: -4.000000, 5.000000, -44.000000
+PointOfApplication_Body2: 21.000000, 5.000000, -34.000000
 mode: Space fixed
 direction: -1.000000, 0.000000, 0.000000
 ForceExpression: sin(2*pi/PARVAL[periodDuration]*SIMTIME[]) 
@@ -81,7 +81,7 @@ name: new_torque_1
 body1: new_body_1
 body2: new_body_0
 mode: Body fixed
-direction: 0.000000, 1.000000, 0.000000
+direction: 1.000000, 1.000000, 1.000000
 TorqueExpression: STEP[SIMTIME[],0,0,1,1,cosine]
 
 $DATAOBJECT_PARAMETER:
@@ -94,8 +94,8 @@ body1: new_body_0
 body2: GROUND
 type: displacement
 component: 1
-location_body1: 0.000000, 0.000000, 0.000000
-location_body2: 0.000000, 0.000000, 0.000000
+location_body1: 10.000000, 0.000000, -15.000000
+location_body2: 25.000000, 10.000000, 10.000000
 use_initial_value: 1
 
 $MEASURE:

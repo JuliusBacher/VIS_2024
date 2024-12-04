@@ -1,0 +1,155 @@
+%
+%---------------- Rigid Bodies ------------------------
+%
+Body Rigid_EulerParameter_PAI
+	BodyName = new_body_0
+	BodyID = 1
+	InitialVelocityVector = 0.000000,0.000000,0.000000
+	InitialOmegaVector = 0.000000,0.000000,0.000000
+	RegardVelocityInertiaForcesInsideJacobian = no
+	Mass = 0.001000
+	LocationCenterMass = 0.000000,0.000000,0.000000
+	Inertia = 0.001000,0.001000,0.001000
+	OrientationPAI = 1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000
+EndBody
+%
+Body Rigid_EulerParameter_PAI
+	BodyName = new_body_1
+	BodyID = 2
+	InitialVelocityVector = 0.000000,0.000000,0.000000
+	InitialOmegaVector = 0.000000,0.000000,0.000000
+	RegardVelocityInertiaForcesInsideJacobian = no
+	Mass = 0.001000
+	LocationCenterMass = 0.000000,0.000000,0.000000
+	Inertia = 0.001000,0.001000,0.001000
+	OrientationPAI = 1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000
+EndBody
+%
+%
+%---------------- Flexible Bodies ------------------------
+%
+%
+%---------------- Generic Constraints ------------------------
+%
+Constraint Generic
+	 ConstraintID = 1
+	 BodyIDs = 1, 0
+	 dxFixed = yes
+	 dyFixed = yes
+	 dzFixed = yes
+	 axFixed = yes
+	 ayFixed = yes
+	 azFixed = yes
+	 Location = 0.000000, 0.000000, 0.000000
+	 ConstraintOrientation = 1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000
+EndConstraint
+%
+Constraint Generic
+	 ConstraintID = 2
+	 BodyIDs = 1, 2
+	 dxFixed = yes
+	 dyFixed = yes
+	 dzFixed = yes
+	 axFixed = yes
+	 ayFixed = yes
+	 azFixed = no
+	 Location = 25.000000, 0.000000, 0.000000
+	 ConstraintOrientation = 1.00000000,0.00000000,0.00000000,0.00000000,1.00000000,0.00000000,0.00000000,0.00000000,1.00000000
+EndConstraint
+%
+%
+%---------------- Gear Constraint ------------------------
+%
+%
+%---------------- Motion Constraint ------------------------
+%
+%
+%---------------- Forces ------------------------
+%
+Force Gravity
+    ForceID = 1
+    GravityAccVector = 0.000000, 0.000000, -9810.000000
+    ActivationTime = 0.000000
+EndForce
+%
+Force GenericForce
+	 ForceID = 2
+	 BodyIDs = 1,2
+	 PointOfApplication_Body1 = 10.000000,20.000000,30.000000
+	 PointOfApplication_Body2 = 0.000000,0.000000,0.000000
+	 ForceDirectionType = SpaceFixed
+	 ForceDirection = -1.000000,0.000000,0.000000
+	 ForceExpression = sin(2*pi/PARVAL[periodDuration]*SIMTIME[]) 
+EndForce
+%
+Force GenericTorque
+	 ForceID = 3
+	 BodyIDs = 2,1
+	 AxisType = BodyFixed
+	 Axis = 0.000000,1.000000,0.000000
+	 TorqueExpression = STEP[SIMTIME[],0,0,1,1,cosine]
+EndForce
+%
+%
+%---------------- Data Object ------------------------
+%
+DataObject Parameter
+	 Label  = periodDuration
+	 VisualizationID = 1
+	 InitialValue = 1.000000
+EndDataObject
+%
+%
+%---------------- Measures ------------------------
+%
+Measure Translational
+	 MeasureName = new_measure_0
+	 MeasureID = 1
+	 BodyIDs = 1,0
+	 MeasureMode = disp
+	 MeasureCoordinate = X
+	 MeasureLocation_Body1 = 0.000000,0.000000,0.000000
+	 MeasureLocation_Body2 = 0.000000,0.000000,0.000000
+	 UseInitialValueAsOffset = yes
+EndMeasure
+Measure Rotational
+	 MeasureName = new_measure_1
+	 MeasureID = 2
+	 BodyIDs = 2,1
+	 MeasureCoordinate = Angle
+	 MeasureVec = 1.000000,0.000000,0.000000
+	 MeasurePlaneVec1 = 1.000000,0.000000,0.000000
+	 MeasurePlaneVec2 = 0.000000,1.000000,0.000000
+	 UseInitialValueAsOffset = yes
+EndMeasure
+%
+%---------------- Solver ------------------------
+%
+Simulation Dynamic
+	 SimulationTimeEnd = 1.000000
+	 OutputTimeBegin = 0.000000
+	 OutputTimeStepSize = 1.000000e-03
+	 isExactOutputTimeEnforced = yes
+	 WriteConstraintForceResultFile = no
+	 WriteForceResultFile = no
+	 WriteVelocityResultFile = no
+	 WriteStateResultFile = yes
+	 WriteAccelerationResultFile = no
+	 WriteExtConstraintLagrangeResultFile = no
+	 WriteMeasureResultFile = yes
+EndSimulation
+%
+Solver HHT
+	 Alpha = -0.300000
+	 MaxNumberOfInnerIterations = 10, 0
+	 GlobalErrorTolerance = 1.000000e-04
+	 SolverMinTimeStep = 1.000000e-14
+	 SolverMaxTimeStep = 1.000000e-02
+	 ModifyNewmark = yes
+	 MaxNumOfTimeStepsUsingSameFactorizedJacobian = 0
+	 UsePardisoScalingAndMatching = no
+	 DebugLevel = 0
+	 DebugTimeBegin = 0.000000
+	 DebugTimeEnd = 1.000000
+EndSolver
+%

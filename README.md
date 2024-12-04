@@ -1,21 +1,49 @@
-# VIS_2024
+# **VIS_2024**
 
-Willkommen im **VIS_2024**-Repository! Dieses Repository dient als zentrale Anlaufstelle für alle Studierenden des Kurses **VIS3 (UE+VO)**. Hier können Sie Inhalte, Vorlagen und Aufgaben abrufen.
+Willkommen im **VIS_2024**-Repository! Dieses Repository dient als zentrale Anlaufstelle für alle Studierenden des Kurses **VIS3 (UE+VO)**. Hier finden Sie Inhalte, Vorlagen und Aufgaben.
 
-## Hinweise zur Nutzung
+---
 
-- **Bitte verwenden Sie individuelle Branches für Ihre Arbeiten.**
-- **Vermeiden Sie es, direkt auf den `master` Branch zu committen oder diesen zu mergen.** Jede*r Studierende sollte in einem eigenen Branch arbeiten, um Konflikte zu vermeiden und die Übersichtlichkeit zu bewahren. Ihre individuelle Arbeit kann folgendermaßen organisiert werden:
-  1. **Erstellen Sie einen neuen Branch** mit Ihrem Namen oder einem aussagekräftigen Titel:
+## **Hinweise zur Nutzung**
+
+- **Individuelle Repositories:** Bitte erstellen Sie einen **Fork** dieses Repositories für Ihre Arbeiten.
+- **Keine direkten Commits auf den `master` Branch:** 
+  - Jede*r Studierende bearbeitet die von mir gestellten Aufgaben in einem eigenen Branch.
+
+### **Arbeitsablauf**
+
+1. **Erstellen eines neuen Branches:**
+   - Verwenden Sie einen aussagekräftigen Namen (z. B. `ihr_name/feature_name`):
      ```bash
      git checkout -b ihr_name/feature_name
      ```
-  2. **Arbeiten Sie in Ihrem Branch** und pushen Sie Änderungen regelmäßig:
+
+2. **Arbeiten im eigenen Branch:**
+   - Führen Sie Änderungen lokal durch und pushen Sie regelmäßig:
      ```bash
      git push origin ihr_name/feature_name
      ```
-  3. **Keine direkten Commits in den `master` Branch!** Dieser Branch ist für allgemeine Vorlagen und Inhalte reserviert.
 
-## Einreichung von Arbeiten
+3. **Kein direkter Zugriff auf den `master` Branch:**
+   - Der `master` Branch ist ausschließlich für allgemeine Vorlagen und Inhalte reserviert.
 
-Die Anweisungen zur Einreichung Ihrer Arbeiten finden Sie auf der eLearning-Plattform **Moodle**: [Link zur Aufgabe](https://elearning.fh-ooe.at/mod/resource/view.php?id=526868).
+4. **Abruf von Updates:**
+   - Neue Aufgaben und Änderungen werden im Upstream-Repository (dieses Repository) bereitgestellt. Laden Sie diese wie folgt in den **main-Branch Ihres eigenen Forks**:
+     ```bash
+     git fetch upstream
+     git checkout main
+     git merge upstream/main
+     ```
+   - **Hinweis:** Führen Sie den Merge nur in Ihrem eigenen `main` Branch durch, um Änderungen sauber zu integrieren und Konflikte zu minimieren.
+
+5. **Abgabe von Aufgaben:**
+   - Reichen Sie Ihre Arbeiten per **Pull-Request** an das Upstream-Repository (dieses Repository) ein.
+
+---
+
+## **Einreichung von Arbeiten**
+
+- Alle Informationen zur Einreichung Ihrer Aufgaben finden Sie in den jeweiligen Unterordnern für Aufgaben. 
+- Die Aufgaben sind als Markdown-Dateien bereitgestellt.
+
+---
