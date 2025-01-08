@@ -77,8 +77,8 @@ class rigidBody(body):
             iniRot[:3, 0] = np.array(self.parameter["x_axis"]["value"])
             iniRot[:3, 1] = np.array(self.parameter["y_axis"]["value"])
             iniRot[:3, 2] = np.array(self.parameter["z_axis"]["value"])
-            diffRot = np.linalg.matmul(iniPAI.T,iniRot)
-            posLocal = np.linalg.matmul(iniPAI.T,np.array(self.parameter["position"]["value"]) - np.array(self.parameter["COG"]["value"]))
+            diffRot = np.linalg.matmul(iniPAI.T,iniRot)                   #siehe Mitschrift
+            posLocal = np.linalg.matmul(iniPAI.T,np.array(self.parameter["position"]["value"]) - np.array(self.parameter["COG"]["value"]))   # posLocal = R
             position = COGPos + np.linalg.matmul(rotation,posLocal)
             transform_matrix[:3, :3] = np.linalg.matmul(rotation,diffRot)
             transform_matrix[:3, 3] = position
