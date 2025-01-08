@@ -8,14 +8,7 @@
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
-        }
-        {
-            "name": "Python Debugger: Current File",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${file}",
+            "program": "Animation/main.py",
             "console": "integratedTerminal",
             "args": ["Animation/test.fdd"]
         }
