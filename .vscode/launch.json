@@ -8,9 +8,9 @@
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",
-            "program": "Animation/main.py",
+            "program": "Aufgabe_3/main.py",
             "console": "integratedTerminal",
-            "args": ["Animation/test.fdd"]
+            "args": ["Aufgabe_3/test.fdd"]
         }
     ]
 }
