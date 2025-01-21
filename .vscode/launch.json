@@ -8,9 +8,9 @@
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",
-            "program": "Aufgabe_3/mainwindow.py",
+            "program": "Aufgabe_4/mainwindow.py",
             "console": "integratedTerminal",
-            "args": ["Aufgabe_3/test.fdd"]
+            "args": ["Aufgabe_4/test.fdd"]
         }
     ]
 }

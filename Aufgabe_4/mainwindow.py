@@ -53,7 +53,7 @@ class MainWindow(QMainWindow):
         menu_bar = self.menuBar()
 
         # File menu
-        file_menu = menu_bar.addMenu("File","Anzeige")
+        file_menu = menu_bar.addMenu("File")
 
         load_action = QAction("Load", self)
         load_action.triggered.connect(self.load_model)

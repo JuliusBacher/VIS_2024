@@ -1,7 +1,7 @@
 Body Rigid_EulerParameter_PAI
 	mass = 0.001
 	COG = 0.0,0.0,0.0
-	geometry = C:\git\VIS2024\VIS_2024\Aufgabe_3\quader.obj
+	geometry = C:\git\VIS2024\VIS_2024\Aufgabe_4\quader.obj
 	position = 0.0,0.0,0.0
 	x_axis = 1.0,0.0,0.0
 	y_axis = 0.0,1.0,0.0
@@ -11,7 +11,7 @@ EndBody
 Body Rigid_EulerParameter_PAI
 	mass = 0.001
 	COG = 0.0,0.0,0.0
-	geometry = C:\git\VIS2024\VIS_2024\Aufgabe_3\quader.obj
+	geometry = C:\git\VIS2024\VIS_2024\Aufgabe_4\quader.obj
 	position = 25.0,0.0,10.0
 	x_axis = 1.0,0.0,0.0
 	y_axis = 0.0,1.0,0.0
