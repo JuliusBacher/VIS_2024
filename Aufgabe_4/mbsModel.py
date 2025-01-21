@@ -70,4 +70,18 @@ class mbsModel:
         for object in self.__mbsObjectList:
             object.show(renderer)
 
-    
+   
+
+
+
+    #def showFilteredModel(self, renderer, Body):
+    #    """
+    #    Render only specific elements based on the filter_type.
+#
+    #    :param renderer: VTK renderer instance.
+    #    :param filter_type: The type of elements to filter (e.g., "Body").
+    #    """
+    #    for object in self.__mbsObjectList:
+    #        if object.getType() == Body:
+     #           object.show(renderer)
+   

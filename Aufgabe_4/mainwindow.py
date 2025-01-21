@@ -200,7 +200,9 @@ class MainWindow(QMainWindow):
 
         self.renderer.RemoveAllViewProps()  # Clear the renderer
 
-        # Add mbsObjects to the renderer
+    #    if Body:
+    #        self.model.showFilteredModel(self.renderer,Body)
+    #   else:
         self.model.showModel(self.renderer)  # Use model's showModel method
 
         self.renderer.ResetCamera()
@@ -213,14 +215,12 @@ def main():
         app = QApplication(sys.argv)
         window = MainWindow()
 
-        # Import the FDD file as soon as the window starts
         if window.model is None:
             window.model = mbsModel.mbsModel()
         window.model.importFddFile(fdd_file_path)
         window.render_model()
         sys.exit(app.exec())
 
-    # Otherwise, just start the regular GUI application
     app = QApplication(sys.argv)
     window = MainWindow()
     sys.exit(app.exec())
