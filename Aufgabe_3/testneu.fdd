@@ -1,11 +1,11 @@
 $RIGID_BODY:
 name: new_body_0
-geometry: C:\Git\Vis_2024\VIS_2024\Aufgabe_2\quader.obj
+geometry: C:\git\VIS2024\VIS_2024\Aufgabe_3\quader.obj
 position: 0.000000, 0.000000, 0.000000
 x_axis: 1.00000000, 0.00000000, 0.00000000
 y_axis: 0.00000000, 1.00000000, 0.00000000
 z_axis:0.00000000, 0.00000000, 1.00000000
-color: 254 146 146   255
+color: 200 100 150   255
 transparency: 0
 initial velocity: 0.000000, 0.000000, 0.000000
 initial omega: 0.000000, 0.000000, 0.000000
@@ -19,8 +19,8 @@ i3_axis: 0.00000000, 0.00000000, 1.00000000
 
 $RIGID_BODY:
 name: new_body_1
-geometry: C:\Git\Vis_2024\VIS_2024\Aufgabe_2\quader.obj
-position: 25.000000, 0.000000, 10.000000
+geometry: C:\git\VIS2024\VIS_2024\Aufgabe_3\quader.obj
+position: 25.000000, 0.000000, 30.000000
 x_axis: 1.00000000, 0.00000000, 0.00000000
 y_axis: 0.00000000, 1.00000000, 0.00000000
 z_axis:0.00000000, 0.00000000, 1.00000000
