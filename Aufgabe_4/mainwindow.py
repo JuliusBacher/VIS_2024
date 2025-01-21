@@ -9,8 +9,9 @@ from PySide6.QtWidgets import (
     QStatusBar,
     QFileDialog,
     QMessageBox,
+    QColorDialog,
 )
-from PySide6.QtGui import QAction, QImage, QPainter
+from PySide6.QtGui import QAction, QImage, QPainter 
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 import vtk
 import inputfilereader
@@ -72,13 +73,17 @@ class MainWindow(QMainWindow):
         file_menu.addAction(exit_action)
 
         #######
+        background_menu = menu_bar.addMenu("Background")
 
-        filter_menu = menu_bar.addMenu("Anzeige")
+        white_action = QAction("white", self)
+        white_action.triggered.connect(self.white)
+        background_menu.addAction(white_action)    
 
-        #body_action = QAction("boy", self)
-        #body_action.triggered.connect(self.body)
-        #filter_menu.addAction(body_action)    
+        black_action = QAction("black", self)
+        black_action.triggered.connect(self.black)
+        background_menu.addAction(black_action) 
 
+        ######
         screenshot_menu = menu_bar.addMenu("Screenshot")
 
         jpg_screenshot_action = QAction("Save Screenshot as jpg", self)
@@ -128,6 +133,27 @@ class MainWindow(QMainWindow):
                     QMessageBox.critical(self, "Error", "Failed to import FDD file.")
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to import FDD file: {e}")
+
+    def white(self):
+
+        color = "#FFFFFF"  # White color in hex format
+        self.central_widget.setStyleSheet(f"background-color: {color};")
+        self.renderer.SetBackground(1.0, 1.0, 1.0)  # RGB values for white
+        self.vtk_widget.GetRenderWindow().Render()  # Update the VTK render window
+
+        # Update the status bar
+        self.status_bar.showMessage("Background color changed to white.")
+
+    def black(self):
+   
+        color = "#000000"  # Black color in hex format
+        self.central_widget.setStyleSheet(f"background-color: {color};")
+        self.renderer.SetBackground(0.0, 0.0, 0.0)  # RGB values for black
+        self.vtk_widget.GetRenderWindow().Render()  # Update the VTK render window
+
+        # Update the status bar
+        self.status_bar.showMessage("Background color changed to black.")
+
 
 
     def save_screenshot_as_jpg(self):
