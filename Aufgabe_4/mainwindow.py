@@ -10,7 +10,7 @@ from PySide6.QtWidgets import (
     QFileDialog,
     QMessageBox,
 )
-from PySide6.QtGui import QAction
+from PySide6.QtGui import QAction, QImage, QPainter
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 import vtk
 import inputfilereader
@@ -71,6 +71,22 @@ class MainWindow(QMainWindow):
         exit_action.triggered.connect(self.close)
         file_menu.addAction(exit_action)
 
+        #######
+
+        filter_menu = menu_bar.addMenu("Anzeige")
+
+        #body_action = QAction("boy", self)
+        #body_action.triggered.connect(self.body)
+        #filter_menu.addAction(body_action)    
+
+        screenshot_menu = menu_bar.addMenu("Screenshot")
+
+        jpg_screenshot_action = QAction("Save Screenshot as jpg", self)
+        jpg_screenshot_action.triggered.connect(self.save_screenshot_as_jpg)
+        screenshot_menu.addAction(jpg_screenshot_action)
+
+
+
         self.setMenuBar(menu_bar)
 
     def load_model(self):
@@ -112,6 +128,44 @@ class MainWindow(QMainWindow):
                     QMessageBox.critical(self, "Error", "Failed to import FDD file.")
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Failed to import FDD file: {e}")
+
+
+    def save_screenshot_as_jpg(self):
+        """Capture a screenshot of the current window and save it as a jpg."""
+        try:
+            render_window = self.vtk_widget.GetRenderWindow()
+            window_to_image_filter = vtk.vtkWindowToImageFilter()
+            window_to_image_filter.SetInput(render_window)
+            window_to_image_filter.Update()
+
+            vtk_image = window_to_image_filter.GetOutput()
+
+            # Convert the VTK image to a QImage
+            width, height, _ = vtk_image.GetDimensions()
+            vtk_data = vtk_image.GetPointData().GetScalars()
+            components = vtk_data.GetNumberOfComponents()
+
+            # Create a QImage from the VTK image data
+            if components == 3:
+                format = QImage.Format_RGB888
+            elif components == 4:
+                format = QImage.Format_RGBA8888
+            else:
+                raise ValueError("Unsupported number of components in VTK image")
+
+            qimage = QImage(vtk_data, width, height, width * components, format)
+            qimage = qimage.mirrored(False, True)
+
+            # Ask user for file location to save the JPG
+            file_name, _ = QFileDialog.getSaveFileName(self, "Save Screenshot", "", "JPEG Files (*.jpg)")
+            if file_name:
+                # Save the QImage to a JPG file
+                if qimage.save(file_name, "JPG"):
+                    self.status_bar.showMessage(f"Screenshot saved as JPG: {file_name}")
+                else:
+                    QMessageBox.critical(self, "Error", "Failed to save screenshot as JPG.")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to save screenshot as JPG: {e}")
 
     def render_model(self):
         """Render the model in the VTK window."""
