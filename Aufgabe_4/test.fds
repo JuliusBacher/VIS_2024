@@ -1,0 +1,97 @@
+Body Rigid_EulerParameter_PAI
+	mass = 0.001
+	COG = 0.0,0.0,0.0
+	geometry = C:\git\VIS2024\VIS_2024\Aufgabe_3\quader.obj
+	position = 0.0,0.0,0.0
+	x_axis = 1.0,0.0,0.0
+	y_axis = 0.0,1.0,0.0
+	z_axis = 0.0,0.0,1.0
+EndBody
+%
+Body Rigid_EulerParameter_PAI
+	mass = 0.001
+	COG = 0.0,0.0,0.0
+	geometry = C:\git\VIS2024\VIS_2024\Aufgabe_3\quader.obj
+	position = 25.0,0.0,10.0
+	x_axis = 1.0,0.0,0.0
+	y_axis = 0.0,1.0,0.0
+	z_axis = 0.0,0.0,1.0
+EndBody
+%
+Constraint Generic
+	body1 = new_body_0
+	body2 = GROUND
+	position = 0.0,5.0,-20.0
+	x_axis = 1.0,0.0,0.0
+	y_axis = 0.0,1.0,0.0
+	z_axis = 0.0,0.0,1.0
+	dx = yes
+	dy = yes
+	dz = yes
+	ax = yes
+	ay = yes
+	az = yes
+EndConstraint
+%
+Constraint Generic
+	body1 = new_body_0
+	body2 = new_body_1
+	position = 25.0,0.0,0.0
+	x_axis = 1.0,0.0,0.0
+	y_axis = 0.0,1.0,0.0
+	z_axis = 0.0,0.0,1.0
+	dx = yes
+	dy = yes
+	dz = yes
+	ax = yes
+	ay = yes
+	az = no
+EndConstraint
+%
+Force GenericForce
+	body1 = new_body_0
+	body2 = new_body_1
+	PointOfApplication_Body1 = -4.0,5.0,-44.0
+	PointOfApplication_Body2 = 21.0,5.0,-34.0
+	mode = Space fixed
+	direction = -1.0,0.0,0.0
+	ForceExpression = sin(2*pi/PARVAL[periodDuration]*SIMTIME[])
+EndForce
+%
+Force GenericTorque
+	body1 = new_body_1
+	body2 = new_body_0
+	mode = Body fixed
+	direction = 1.0,1.0,1.0
+	TorqueExpression = STEP[SIMTIME[],0,0,1,1,cosine]
+EndForce
+%
+DataObject Parameter
+	name = periodDuration
+	InitialValue = 1.0
+EndDataObject
+%
+Measure Translational
+	body1 = new_body_0
+	body2 = GROUND
+	type = displacement
+	location_body1 = 10.0,0.0,-15.0
+	location_body2 = 25.0,10.0,10.0
+	vector_body1 = 0.0,0.0,0.0
+	vector1_body2 = 0.0,0.0,0.0
+	vector2_body2 = 0.0,0.0,0.0
+	use_initial_value = yes
+EndMeasure
+%
+Measure Rotational
+	body1 = new_body_1
+	body2 = new_body_0
+	type = angle
+	location_body1 = 0.0,0.0,0.0
+	location_body2 = 0.0,0.0,0.0
+	vector_body1 = 1.0,0.0,0.0
+	vector1_body2 = 1.0,0.0,0.0
+	vector2_body2 = 0.0,1.0,0.0
+	use_initial_value = yes
+EndMeasure
+%
